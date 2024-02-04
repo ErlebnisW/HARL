@@ -106,8 +106,10 @@ class MultipleCombatEnv(BaseEnv):
             rewards[enm_id] = [enm_reward]
 
         dones = {}
+        infos = {}
         for agent_id in self.agents.keys():
             done, info = self.task.get_termination(self, agent_id, info)
             dones[agent_id] = [done]
+            infos[agent_id] = info
 
-        return self._pack(obs), self._pack(share_obs), self._pack(rewards), self._pack(dones), info
+        return self._pack(obs), self._pack(share_obs), self._pack(rewards), self._pack(dones), infos

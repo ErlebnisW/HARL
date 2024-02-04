@@ -107,6 +107,7 @@ class BaseTask(ABC):
             d, s, info = condition.get_termination(self, env, agent_id, info)
             done = done or d
             success = success and s
+            info["result"] = success
             if done:
                 break
         return done, info
